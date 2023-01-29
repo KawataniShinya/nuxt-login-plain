@@ -26,6 +26,8 @@
 <script>
 import EmailField from "~/components/TextFieldComponents/EmailField.vue";
 import PasswordField from "~/components/TextFieldComponents/PasswordField.vue";
+import { authenticate } from "~/store/store";
+
 export default {
   data() {
     return {
@@ -40,18 +42,13 @@ export default {
     submit() {
       let email = this.email;
       let password = this.password;
-      if (this.authenticate(email, password)) {
+      if (authenticate({email, password})) {
         this.loginSuccess = true;
         this.loginFailed = false;
       } else {
         this.loginFailed = true;
         this.loginSuccess = false;
       }
-    },
-    authenticate(email, password) {
-      let registeredUser = this.$store.state.registeredUser;
-      if (email === registeredUser.email && password === registeredUser.password) return true;
-      return false;
     },
   },
 };

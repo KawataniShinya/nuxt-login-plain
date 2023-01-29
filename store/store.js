@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 const state = {
   registeredUser: {
       email: 'test@mail.com',
@@ -10,6 +5,12 @@ const state = {
   }
 }
 
-export default new Vuex.Store({
-  state
-})
+const authenticate = (payload) => {
+  if(payload.email === state.registeredUser.email && payload.password === state.registeredUser.password) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export { authenticate }
