@@ -49,7 +49,8 @@ export default {
       }
     },
     authenticate(email, password) {
-      if (email === 'test@mail.com' && password === 'password') return true;
+      let registeredUser = this.$store.state.registeredUser;
+      if (email === registeredUser.email && password === registeredUser.password) return true;
       return false;
     },
   },
