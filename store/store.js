@@ -1,3 +1,8 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
 const state = {
   registeredUser: {
       email: 'test@mail.com',
@@ -5,12 +10,19 @@ const state = {
   }
 }
 
-const authenticate = (payload) => {
-  if(payload.email === state.registeredUser.email && payload.password === state.registeredUser.password) {
-    return true;
-  } else {
-    return false;
+const actions = {
+  authenticate({commit}, payload) {
+    if(payload.email === state.registeredUser.email && payload.password === state.registeredUser.password) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
-export { authenticate }
+const store = new Vuex.Store({
+  state,
+  actions
+});
+
+export default store
